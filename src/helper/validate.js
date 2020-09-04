@@ -1,9 +1,15 @@
 const Joi = require('@hapi/joi')
 
 const schemas = {
+    // Nơi định nghĩa các rules cho việc validate. Ví dụ như : Email không được bỏ trống, phải dài hơn 5 ký tự,...v....v..
+    // Các tên key trong shema phải trùng với name trong form gửi đi
     registerSchema: Joi.object().keys({
         email: Joi.string().email().required(),
         password: Joi.string().min(5).required()
+    }),
+    loginSchema: Joi.object().keys({
+        email: Joi.string().email().required(),
+        password: Joi.string().min(3).required()
     })
 }
 
@@ -13,7 +19,6 @@ const validateBodyRequest = (schema) => {
         if(validateBodyResult.error) return res.status(400).json(validateBodyResult.error)
 
         if(!req.value) req.value = {}
-        if(!req.value['params']) req.value.params = {}
         req.value.body = validateBodyResult.value
         next()
     }

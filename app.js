@@ -1,10 +1,16 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const ejs = require("ejs");
 const path = require("path");
 const db = require("./src/Config/WebSimpleDB");
 const User = require("./src/Models/User");
-const registerRouter = require('./src/Router/RegisterRouter')
+const registerRouter = require("./src/Router/RegisterRouter");
+const loginRouter = require('./src/Router/LoginRouter')
+const session = require('express-session')
+const passport = require('passport')
+
+
 /// Config app
 app.use(express.json());
 app.use(
@@ -12,6 +18,15 @@ app.use(
     extended: false,
   })
 );
+// Config session of passport to keep req.user data
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
+}))
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Set view engine
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "src", "views", "components"));
@@ -23,12 +38,20 @@ app.use("/img", express.static(__dirname + "/public/img"));
 db.ConnectDB();
 
 //Routes
-app.use('/register',registerRouter)
+app.use("/register", registerRouter);
+app.use('/login', loginRouter)
 
-app.get("/", (req, res, next) => {
-  res.send("Hello");
+app.get("/home", (req, res, next) => {
+  console.log("Home", req.user);
+  if(req.user){
+    res.render("Home", {
+      name : req.user.email
+    });
+  } else {
+    res.redirect('/login')
+  }
 });
 
-app.listen(3001, () => {
-  console.log("✅ Port is running on http://localhost:3000 ✅");
+app.listen(process.env.PORT, () => {
+  console.log(`✅ Port is running on http://localhost:${process.env.PORT}/home ✅`);
 });
