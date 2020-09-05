@@ -2,7 +2,10 @@ const User = require('../Models/User')
 
 
 const getIndex = (req,res,next) => {
-    return res.render("Register");
+    return res.render("Register", {
+        title: "Register",
+        user: null
+    });
 }
 const registerUser = async (req,res,next) => {
     const user = new User({

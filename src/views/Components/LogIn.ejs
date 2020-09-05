@@ -1,25 +1,57 @@
 <%- include('../layoutOn.ejs') %> 
+<style>
+  .google {
+  background-color: #dd4b39;
+  color: white;
+}
+.facebook {
+  background-color: #3B5998;
+  color: white;
+}
+</style>
 <div class="container">
     <h3 class="pb-2 mt-2 mb-4 border-bottom">Log In </h3>
     <form method="POST" action="/login">
         <div class="form-group row">
-          <label for="email" class="col-sm-2 col-form-label">Email</label>
-          <div class="col-sm-4">
+          <label for="email" class="col-md-3 col-form-label font-weight-bold text-right">Email</label>
+          <div class="col-md-5">
             <input type="email" class="form-control" id="email" name="email" placeholder="Email">
           </div>
         </div>
         <div class="form-group row">
-            <label for="password" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-4">
+            <label for="password" class="col-md-3 col-form-label font-weight-bold text-right">Password</label>
+            <div class="col-md-5">
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             </div>
         </div>
-        <div class="form-group row">
-            <label for="" class="col-sm-2 col-form-label"></label>
+        <div class="form-group">
+          <div class="offset-md-3 col-md-7 pl-2">
+            <button class="col-md-3 btn btn-primary" type="submit">
+              <i class="fa fa-user fa-sm"></i> Login</button>
+              <a class="btn btn-link" href="/forgot">Forgot your password?
+              </a>
+          </div>
+            <!-- <label for="" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
                 <button class="btn btn-primary" type="submit">LogIn</button>
-            </div>
+            </div> -->
+        </div>
+        <div class="form-group">
+          <div class="offset-md-3 col-md-7 pl-2">
+            <hr/>
+        </div>
+        <div class="form-group">
+          <div class="offset-md-3 col-md-7 pl-2">
+            <a href="#" class="google btn">
+              <i class="fa fa-google fa-fw"></i> Login with Google+
+            </a>
+            <a href="/login/auth/facebook" class="facebook btn">
+              <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+            </a>
           </div>
-      </form>
+        </div>
+        </div>
+    </form>
 </div>
+
 <%- include('../layoutUnder.ejs') %>

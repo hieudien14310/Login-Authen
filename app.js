@@ -46,7 +46,8 @@ app.use('/logout',logoutRouter)
 app.get("/home", (req, res, next) => {
   if(req.user){
     res.render("Home", {
-      name : req.user.email
+      user: req.user,
+      title : "Home"
     });
   } else {
     res.redirect('/login')

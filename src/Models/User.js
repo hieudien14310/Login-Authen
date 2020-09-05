@@ -15,6 +15,15 @@ const UserSchema = new Schema({
     type: String,
     default: "local",
   },
+  firstName: {
+    type: String,
+  },
+  lastName: {
+    type: String,
+  },
+  urlImage: {
+    type: String,
+  }
 });
 UserSchema.pre("save", async function (next) {
   try {

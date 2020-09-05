@@ -17,4 +17,16 @@ router
     passport.authenticate("local", { session: true }),
     loginController.postLogin
   );
+
+router
+  .route("/auth/facebook")
+  .get(passport.authenticate("facebook", { scope: ["email"], session: true }));
+router
+  .route("/auth/facebook/callback")
+  .get(
+    passport.authenticate("facebook", { failureRedirect: "/login" }),
+    (req, res) => {
+      res.redirect("/home");
+    }
+  );
 module.exports = router;
