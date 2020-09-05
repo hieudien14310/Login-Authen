@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
@@ -6,9 +7,25 @@ const UserSchema = new Schema({
         type: String
     },
     email: {
-        type: String
+        type: String,
+        unique: true,
+        lowercase:true
+    },
+    authenType: {
+        type: String,
+        default: "local"
     }
 })
-
+UserSchema.pre("save", async function(next) {
+    try {
+        if(this.authenType !== "local") next();        
+        const salt = await bcrypt.genSalt(10)
+        const passwordHashed = await bcrypt.hash(this.password, salt)
+        this.password = passwordHashed
+        next();
+    } catch (error) {
+        next(error)
+    }
+})
 const User = mongoose.model('User', UserSchema)
 module.exports = User

@@ -5,6 +5,7 @@ async function ConnectDB(params) {
         await mongoose.connect("mongodb://localhost/WebSimple", {
             useNewUrlParser: true,
             useUnifiedTopology: true,   
+            useCreateIndex: true,
         })
         console.log("✅ Connecting to DB is successful");
     } catch (error) {
