@@ -21,16 +21,11 @@ passport.use(
         console.log(1);
       try {
         const user = await User.findOne({ email: email });
-        if (!user) {
-            console.log("Sai user");
-            return done(null, false);
-        }
-        if (user.password !== password) {
-            return done(null, false);
-        }
+        if (!user) return done(null, false)
+        const checkCorrectPassword = await user.comparePassword(password);
+        console.log(checkCorrectPassword);
+        if(!checkCorrectPassword) return done(null,false)
         done(null, user);
-        // const checkCorrectPassword = await user.isValidPassword(passport);
-        // if(!checkCorrectPassword) return done(null,false)
       } catch (error) {
         done(error, false);
       }
