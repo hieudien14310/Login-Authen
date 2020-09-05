@@ -7,6 +7,7 @@ const db = require("./src/Config/WebSimpleDB");
 const User = require("./src/Models/User");
 const registerRouter = require("./src/Router/RegisterRouter");
 const loginRouter = require('./src/Router/LoginRouter')
+const logoutRouter = require('./src/Router/LogoutRouter')
 const session = require('express-session')
 const passport = require('passport')
 
@@ -40,9 +41,9 @@ db.ConnectDB();
 //Routes
 app.use("/register", registerRouter);
 app.use('/login', loginRouter)
+app.use('/logout',logoutRouter)
 
 app.get("/home", (req, res, next) => {
-  console.log("Home", req.user);
   if(req.user){
     res.render("Home", {
       name : req.user.email
