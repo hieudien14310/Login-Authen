@@ -57,7 +57,7 @@
       background-image: linear-gradient(135deg, #211F1F 30%, #0a3d62 50%);
   }
 </style>
-<div class="container">
+
     <h3 class="pb-2 mt-2 mb-4 border-bottom">Log In </h3>
     <form method="POST" action="/login">
         <div class="form-group row">
@@ -87,14 +87,6 @@
             <hr/>
         </div>
         <div class="form-group">
-          <!-- <div class="offset-md-3 col-md-7 pl-2">
-            <a href="" class="google btn">
-              <i class="fa fa-google fa-fw"></i> Login with Google+
-            </a>
-            <a href="" class="facebook btn">
-              <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-            </a>
-          </div> -->
           <div class="sm">
             <a href="/login/auth/google" class="media">
                 <i class="socialImage fab fa-google"></i>
@@ -115,6 +107,6 @@
         </div>
         </div>
     </form>
-</div>
+
 
 <%- include('../layoutUnder.ejs') %>

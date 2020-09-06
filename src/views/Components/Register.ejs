@@ -1,5 +1,5 @@
 <%- include('../layoutOn.ejs') %> 
-<div class="container">
+
     <h3 class="pb-2 mt-2 mb-4 border-bottom">Register</h3>
     <form method="POST" action="/register">
         <div class="form-group row">
@@ -15,9 +15,9 @@
             </div>
         </div>
         <div class="form-group row">
-          <label for="confirm-password" class="col-sm-2 col-form-label">Confirm Password</label>
+          <label for="confirmPassword" class="col-sm-2 col-form-label">Confirm Password</label>
           <div class="col-sm-4">
-              <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirm Password">
+              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
           </div>
       </div>
         <div class="form-group row">
@@ -29,5 +29,5 @@
             </div>
           </div>
       </form>
-</div>
+
 <%- include('../layoutUnder.ejs') %>
