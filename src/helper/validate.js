@@ -5,7 +5,8 @@ const schemas = {
     // Các tên key trong shema phải trùng với name trong form gửi đi
     registerSchema: Joi.object().keys({
         email: Joi.string().email().required(),
-        password: Joi.string().min(5).required()
+        password: Joi.string().min(5).required(),
+        confirmPassword: Joi.string().min(5).required(),
     }),
     loginSchema: Joi.object().keys({
         email: Joi.string().email().required(),
