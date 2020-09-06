@@ -14,7 +14,10 @@ router
     //Sau khi Authen thành công, Passport sẽ thiết lập một session login liên tục.
     // Điều này sẽ rát phù hợp khi đăng nhập trên cùng một trình duyệt.
     // Tuy nhiên trong nhiều trường hợp không cần thiết phải sử dụng đến sessions. VD như khi dùng API thường yêu cầu với mỗi request.
-    passport.authenticate("local", { session: true }),
+    passport.authenticate("local", {
+       session: true,
+       failureRedirect: '/login'
+    }),
     loginController.postLogin
   );
 //

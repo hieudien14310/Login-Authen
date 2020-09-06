@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const ejs = require("ejs");
 const path = require("path");
+const flash = require('express-flash')
 const db = require("./src/Config/WebSimpleDB");
 const User = require("./src/Models/User");
 const registerRouter = require("./src/Router/RegisterRouter");
@@ -19,6 +20,7 @@ app.use(
     extended: false,
   })
 );
+app.use(flash())
 // Config session of passport to keep req.user data
 app.use(session({
   secret: 'keyboard cat',

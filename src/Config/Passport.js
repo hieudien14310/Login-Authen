@@ -22,11 +22,15 @@ passport.use(
     async (email, password, done) => {
       try {
         const user = await User.findOne({ email: email });
-        if (!user) return done(null, false)
+        if (!user) {
+          req.flash('errors', [{msg: "Sai email"}])
+          return done(null,false)
+        }
         const checkCorrectPassword = await user.comparePassword(password);
         if(!checkCorrectPassword) return done(null,false)
-        done(null, user);
+        return done(null, user);
       } catch (error) {
+        console.log("vo error");
         done(error, false);
       }
     }

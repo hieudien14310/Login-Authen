@@ -1,5 +1,6 @@
 const User = require('../Models/User')
 const getIndex = (req,res,next) => {
+    console.log(req);
     if(req.user) return res.redirect('/home')
     res.render("Login", {
         title: "Login",
