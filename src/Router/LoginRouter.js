@@ -17,7 +17,7 @@ router
     passport.authenticate("local", { session: true }),
     loginController.postLogin
   );
-
+//
 router
   .route("/auth/facebook")
   .get(passport.authenticate("facebook", { scope: ["email"], session: true }));
@@ -25,6 +25,18 @@ router
   .route("/auth/facebook/callback")
   .get(
     passport.authenticate("facebook", { failureRedirect: "/login" }),
+    (req, res) => {
+      res.redirect("/home");
+    }
+  );
+
+router
+  .route("/auth/google")
+  .get(passport.authenticate("google", { scope: ["email", "profile"], session: true }));
+router
+  .route("/auth/google/callback")
+  .get(
+    passport.authenticate("google", { failureRedirect: "/login" }),
     (req, res) => {
       res.redirect("/home");
     }
