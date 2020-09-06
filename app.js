@@ -34,6 +34,7 @@ app.set("views", path.join(__dirname, "src", "views", "components"));
 // Static file
 app.use(express.static("public"));
 app.use("/img", express.static(__dirname + "/public/img"));
+app.use("/css", express.static(__dirname + "/public/css"));
 
 // Connect to DB
 db.ConnectDB();
