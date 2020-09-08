@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const ejs = require("ejs");
 const path = require("path");
-const flash = require('express-flash')
+const flash = require('connect-flash')
 const db = require("./src/Config/WebSimpleDB");
 const User = require("./src/Models/User");
 const registerRouter = require("./src/Router/RegisterRouter");
@@ -20,13 +20,14 @@ app.use(
     extended: false,
   })
 );
-app.use(flash())
 // Config session of passport to keep req.user data
 app.use(session({
   secret: 'keyboard cat',
+  cookie: {maxAge: 60000},
   resave: true,
   saveUninitialized: true,
 }))
+app.use(flash())
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -48,13 +49,15 @@ app.use('/logout',logoutRouter)
 
 app.get("/home", (req, res, next) => {
   if(req.user){
+    // req.flash("errors","🎉 Congratulations, successfully logged in  ")
     res.render("Home", {
       user: req.user,
-      title : "Home"
+      title : "Home",
+      messages: req.flash()
     });
-  } else {
-    res.redirect('/login')
   }
+    req.flash("errors",'❌ Please log in')
+    res.redirect('/login')
 });
 
 app.listen(process.env.PORT, () => {

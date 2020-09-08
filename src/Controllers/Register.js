@@ -4,12 +4,14 @@ const User = require('../Models/User')
 const getIndex = (req,res,next) => {
     return res.render("Register", {
         title: "Register",
-        user: null
+        user: null,
+        messages: req.flash("errors")
     });
 }
 const registerUser = async (req,res,next) => {
     if(req.body.password !== req.body.confirmPassword){
-        return res.status(200).json({Error: "Confirm password mismatched"})
+        req.flash("errors","❌ Confirm password do not match")
+        return res.redirect('/register')
     }
     const user = new User({
         email: req.body.email,
