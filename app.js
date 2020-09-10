@@ -3,7 +3,10 @@ const express = require("express");
 const app = express();
 const ejs = require("ejs");
 const path = require("path");
+<<<<<<< HEAD
 const flash = require('connect-flash')
+=======
+>>>>>>> parent of 7d3e75b... create flash message
 const db = require("./src/Config/WebSimpleDB");
 const User = require("./src/Models/User");
 const registerRouter = require("./src/Router/RegisterRouter");
