@@ -22,13 +22,9 @@ passport.use(
     async (email, password, done) => {
       try {
         const user = await User.findOne({ email: email });
-<<<<<<< HEAD
         if (!user) {
           return done(null,false)
         }
-=======
-        if (!user) return done(null, false)
->>>>>>> parent of 7d3e75b... create flash message
         const checkCorrectPassword = await user.comparePassword(password);
         if(!checkCorrectPassword) return done(null,false)
         done(null, user);
