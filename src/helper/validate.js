@@ -5,7 +5,8 @@ const schemas = {
     // Các tên key trong shema phải trùng với name trong form gửi đi
     registerSchema: Joi.object().keys({
         email: Joi.string().email().required(),
-        password: Joi.string().min(5).required()
+        password: Joi.string().min(5).required(),
+        confirmPassword: Joi.string().min(5).required(),
     }),
     loginSchema: Joi.object().keys({
         email: Joi.string().email().required(),
@@ -13,10 +14,26 @@ const schemas = {
     })
 }
 
-const validateBodyRequest = (schema) => {
+const validateBodyRequestLogin = (schema) => {
     return (req,res,next) => {
         const validateBodyResult = schema.validate(req.body)
-        if(validateBodyResult.error) return res.status(400).json(validateBodyResult.error)
+        if(validateBodyResult.error) {
+            req.flash("errors", `❌ ${validateBodyResult.error}`)
+            return res.redirect('Login')
+        }
+
+        if(!req.value) req.value = {}
+        req.value.body = validateBodyResult.value
+        next()
+    }
+}
+const validateBodyRequestRegister = (schema) => {
+    return (req,res,next) => {
+        const validateBodyResult = schema.validate(req.body)
+        if(validateBodyResult.error) {
+            req.flash("errors", `❌ ${validateBodyResult.error}`)
+            return res.redirect('Register')
+        }
 
         if(!req.value) req.value = {}
         req.value.body = validateBodyResult.value
@@ -25,5 +42,5 @@ const validateBodyRequest = (schema) => {
 }
 
 module.exports = {
-    validateBodyRequest,schemas
+    validateBodyRequestLogin,schemas,validateBodyRequestRegister
 }

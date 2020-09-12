@@ -23,7 +23,6 @@ passport.use(
       try {
         const user = await User.findOne({ email: email });
         if (!user) {
-          req.flash('errors', [{msg: "Sai email"}])
           return done(null,false)
         }
         const checkCorrectPassword = await user.comparePassword(password);

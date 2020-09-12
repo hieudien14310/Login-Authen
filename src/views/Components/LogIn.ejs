@@ -57,19 +57,19 @@
       background-image: linear-gradient(135deg, #211F1F 30%, #0a3d62 50%);
   }
 </style>
-<div class="container">
+
     <h3 class="pb-2 mt-2 mb-4 border-bottom">Log In </h3>
     <form method="POST" action="/login">
         <div class="form-group row">
           <label for="email" class="col-md-3 col-form-label font-weight-bold text-right">Email</label>
           <div class="col-md-5">
-            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
           </div>
         </div>
         <div class="form-group row">
             <label for="password" class="col-md-3 col-form-label font-weight-bold text-right">Password</label>
             <div class="col-md-5">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
             </div>
         </div>
         <div class="form-group">
@@ -115,6 +115,6 @@
         </div>
         </div>
     </form>
-</div>
+
 
 <%- include('../layoutUnder.ejs') %>

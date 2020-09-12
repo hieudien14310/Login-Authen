@@ -1,10 +1,10 @@
 const User = require('../Models/User')
 const getIndex = (req,res,next) => {
-    console.log(req);
     if(req.user) return res.redirect('/home')
     res.render("Login", {
         title: "Login",
-        user: null
+        user: null,
+        messages: req.flash("errors")
     })
 }
 const postLogin = (req,res,next) => {
