@@ -10,8 +10,8 @@ const getIndex = (req,res,next) => {
 }
 const registerUser = async (req,res,next) => {
     if(req.body.password !== req.body.confirmPassword){
-        req.flash("errors","❌ Confirm password do not match")
-        return res.redirect('/register')
+        req.flash("errors", "❌ Confirm password do not match")
+        return res.redirect('Register')
     }
     const user = new User({
         email: req.body.email,

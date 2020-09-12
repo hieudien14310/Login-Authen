@@ -23,7 +23,7 @@ app.use(
 // Config session of passport to keep req.user data
 app.use(session({
   secret: 'keyboard cat',
-  cookie: {maxAge: 60000},
+  // cookie: {maxAge: 60000},
   resave: true,
   saveUninitialized: true,
 }))
@@ -53,7 +53,11 @@ app.get("/home", (req, res, next) => {
     res.render("Home", {
       user: req.user,
       title : "Home",
-      messages: req.flash()
+      messages: req.flash("success")
+    });
+  } else {
+    req.flash("errors", "❌ Please log in")
+    res.redirect('/login')
     });
   }
     req.flash("errors",'❌ Please log in')
