@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi')
+const Joi = require("@hapi/joi");
 
 const schemas = {
     // Nơi định nghĩa các rules cho việc validate. Ví dụ như : Email không được bỏ trống, phải dài hơn 5 ký tự,...v....v..
@@ -39,7 +39,12 @@ const validateBodyRequestRegister = (schema) => {
         req.value.body = validateBodyResult.value
         next()
     }
-}
+
+    if (!req.value) req.value = {};
+    req.value.body = validateBodyResult.value;
+    next();
+  };
+};
 
 module.exports = {
     validateBodyRequestLogin,schemas,validateBodyRequestRegister

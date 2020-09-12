@@ -49,6 +49,7 @@ app.use('/logout',logoutRouter)
 
 app.get("/home", (req, res, next) => {
   if(req.user){
+    // req.flash("errors","🎉 Congratulations, successfully logged in  ")
     res.render("Home", {
       user: req.user,
       title : "Home",
@@ -57,7 +58,10 @@ app.get("/home", (req, res, next) => {
   } else {
     req.flash("errors", "❌ Please log in")
     res.redirect('/login')
+    });
   }
+    req.flash("errors",'❌ Please log in')
+    res.redirect('/login')
 });
 
 app.listen(process.env.PORT, () => {

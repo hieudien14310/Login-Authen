@@ -10,8 +10,10 @@ const getIndex = (req,res,next) => {
 const postLogin = (req,res,next) => {
     const {email,password} = req.user
     let findUserExists = User.findOne({email: email})
-    if(!findUserExists) return res.status(200).json({message: "Email not found"})
-    return res.redirect('/login')
+    if(!findUserExists) {
+        return res.status(200).json({message: "Email not found"})
+    }
+    return res.redirect('/home')
 }
 const authFacebook = (req,res,next) => {
     console.log("Facebook",req.user);
