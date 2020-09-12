@@ -58,10 +58,7 @@ app.get("/home", (req, res, next) => {
   } else {
     req.flash("errors", "❌ Please log in")
     res.redirect('/login')
-    });
   }
-    req.flash("errors",'❌ Please log in')
-    res.redirect('/login')
 });
 
 app.listen(process.env.PORT, () => {
