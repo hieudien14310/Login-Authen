@@ -62,6 +62,5 @@ app.get("/home", (req, res, next) => {
 });
 
 app.listen(process.env.PORT, () => {
-  console.log(shared.SHARED);
   console.log(`✅ Port is running on http://localhost:${process.env.PORT}/home ✅`);
 });
