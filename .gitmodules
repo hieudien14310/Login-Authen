@@ -1,0 +1,3 @@
+[submodule "internal/sub-const"]
+	path = internal/sub-const
+	url = https://github.com/hieudien14310/sub-const.git
