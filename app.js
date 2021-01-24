@@ -11,7 +11,7 @@ const loginRouter = require('./src/Router/LoginRouter')
 const logoutRouter = require('./src/Router/LogoutRouter')
 const session = require('express-session')
 const passport = require('passport')
-const shared = require('./internal/sub-const/const');
+// const shared = require('./internal/sub-const/const');
 
 /// Config app
 app.use(express.json());
@@ -33,7 +33,7 @@ app.use(passport.session());
 
 // Set view engine
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "src", "views", "components"));
+app.set("views", path.join(__dirname, "src", "views", "Components"));
 // Static file
 app.use(express.static("public"));
 app.use("/img", express.static(__dirname + "/public/img"));
